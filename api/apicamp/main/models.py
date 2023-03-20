@@ -15,3 +15,17 @@ class Campaign(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Subscriber(models.Model):
+    campaign = models.ForeignKey(to=Campaign, on_delete=models.DO_NOTHING)
+    email = models.EmailField(max_length=255)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('-created_at',)
+
+    def __str__(self) -> str:
+        return self.email

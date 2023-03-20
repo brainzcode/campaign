@@ -22,8 +22,6 @@ cloudinary.config(
     cloud_name=config('CLOUD_NAME'), api_key=config('API_KEY'), api_secret=config('API_SECRET'),
 )
 
-print("config('CLOUD_NAME')",
-      config('CLOUD_NAME'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -47,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'main',
 ]
 
 MIDDLEWARE = [
