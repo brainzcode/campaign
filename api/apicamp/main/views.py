@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, response, status
-from .models import Campaign
+from .models import Campaign, Subscriber
 from .serializers import CampaignSerializer, SubscriberSerializer
 
 
@@ -21,4 +21,8 @@ class CampaignDetailAPIView(generics.GenericAPIView):
         return response.Response('Not Found', status=status.HTTP_404_NOT_FOUND)
 
 
-class SubscribeToCampaignAPIView(generics.CreateAPIView)
+class SubscribeToCampaignAPIView(generics.CreateAPIView):
+    serializer_class = SubscriberSerializer
+
+    def get_queryset(self):
+        return Subscriber.objects.all()
