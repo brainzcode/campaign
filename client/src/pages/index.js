@@ -1,9 +1,18 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import dateFormat from "dateformat";
+import dateFormat from 'dateformat';
 import styles from '../styles/Home.module.css';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Home({ data, error }) {
+
+	const router = useRouter()
+
+	const handleNavigate = ({ slug }) => {
+		router.push('/' + slug)
+	}
+
 	return (
 		<div>
 			<Head>
@@ -15,11 +24,11 @@ export default function Home({ data, error }) {
 			</Head>
 			<main className={styles.main}>
 				<div className={styles.innerContent}>
-					<h1>Available Campaigns</h1>
+					<h1 className={styles.h1}>Available Campaigns</h1>
 					{error && <p>{JSON.stringify(error)}</p>}
 					{data.map((el) => (
 						<div key={el.slug}>
-							<div className={styles.item}>
+							<div className={styles.item} onClick={() => handleNavigate(el)}>
 								<div className={styles.imgContainer}>
 									<Image
 										className={styles.img}
@@ -30,9 +39,25 @@ export default function Home({ data, error }) {
 									/>
 								</div>
 								<div className={styles.rightItem}>
-									<h1>{el.title}</h1>
-									<p>{el.description}</p>
-									<small>{dateFormat(new Date(el.created_at), 'dddd, mmmm dS, yyyy, h:MM:ss TT')}</small>
+									<div>
+
+									<Link
+										href={'/' + el.slug}
+										className={styles.h2}
+									>
+										{el.title}
+									</Link>
+									<p className={styles.p}>{el.description}</p>
+									</div>
+									<div className={styles.camp}>
+									<small className={styles.small}>
+										{dateFormat(
+											new Date(el.created_at),
+											'dddd, mmmm dS, yyyy, h:MM:ss TT'
+										)}
+									</small>
+										<small className={styles.campaign}>See Campaign</small>
+									</div>
 								</div>
 							</div>
 						</div>
