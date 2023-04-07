@@ -1,7 +1,6 @@
 env
 .env
 .DS_Store
-htmlcov/
 .vscode/
 .coverage
 __pycache__
