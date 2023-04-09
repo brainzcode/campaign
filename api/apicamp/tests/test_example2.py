@@ -1,13 +1,18 @@
-import pytest
+# import pytest
+
+# from django.contrib.auth.models import User
 
 
-@pytest.fixture
-def fixture_yield():
-    print('Start Test Phase')
-    yield 6
-    print('End Test Phase')
+# @pytest.mark.django_db
+# def test_user():
+#     User.objects.create_user('test', 'test@test.com', 'testuser')
+#     count = User.objects.all().count()
+#     print(count)
+#     assert User.objects.count() == 1
 
 
-def test_yield(fixture_yield):
-    print('Run Test')
-    assert fixture_yield == 6
+# @pytest.mark.django_db
+# def test_user1():
+#     count = User.objects.all().count()
+#     print(count)
+#     assert User.objects.count() == 0
