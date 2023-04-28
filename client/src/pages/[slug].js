@@ -7,7 +7,6 @@ import styles from '../styles/Details.module.css';
 import Link from 'next/link';
 import { FaCheckCircle } from 'react-icons/fa';
 
-
 export default function Campaign({ data }) {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -83,44 +82,50 @@ export default function Campaign({ data }) {
 								</small>
 							</p>
 						</div>
-						{ !isSubmitted ? <div className={styles.right}>
-							<div className={styles.rightContent}>
-								<form
-									onSubmit={handleSubmit}
-									className={styles.forms}
-								>
-									<div className={styles.formGroup}>
-										<input
-											onChange={(event) =>
-												setEmail(event.target.value)
-											}
-											className={styles.input}
-											type='email'
-											name='email'
-											placeholder='Enter an Email'
-											required
-										/>
-									</div>
+						{!isSubmitted ? (
+							<div className={styles.right}>
+								<div className={styles.rightContent}>
+									<form
+										onSubmit={handleSubmit}
+										className={styles.forms}
+									>
+										<div className={styles.formGroup}>
+											<input
+												onChange={(event) =>
+													setEmail(event.target.value)
+												}
+												className={styles.input}
+												type='email'
+												name='email'
+												placeholder='Enter an Email'
+												required
+											/>
+										</div>
 
-									<div className={styles.submit}>
-										<input
-											className={styles.submitForm}
-											type='submit'
-											value={isSubmitting ? 'Please Wait' : 'Get the Free Manual'}
-										/>
-									</div>
-								</form>
+										<div className={styles.submit}>
+											<input
+												className={styles.submitForm}
+												type='submit'
+												value={
+													isSubmitting
+														? 'Please Wait'
+														: 'Get the Free Manual'
+												}
+											/>
+										</div>
+									</form>
+								</div>
 							</div>
-						</div> : 
-                        <div className={styles.thankYou}>
-                            <div className={styles.icon}>
-                                <FaCheckCircle size={45} color='green'/>
-                            </div>
-                            <div className={styles.iconText}>
-                                Your Manual is on the way...
-                            </div>
-                        </div>
-                        }
+						) : (
+							<div className={styles.thankYou}>
+								<div className={styles.icon}>
+									<FaCheckCircle size={45} color='green' />
+								</div>
+								<div className={styles.iconText}>
+									Your Manual is on the way...
+								</div>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
